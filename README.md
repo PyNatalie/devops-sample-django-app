@@ -16,20 +16,14 @@ ____
 - Pillow 9.0.0
 - psycopg2-binary 2.9.3
 - django-prometheus 2.2.0
+- uWSGI==2.0.28
 
 <h3>Deployment</h3>
 
 ____
 
 
-
-- install Python 3.8
-- install libs 
-```shell
-      pip3 install -r requirements.txt
-```
-
-* Set environment export for variables:
+* Change environment variables if you need in .env file:
 ```yaml
       DJANGO_DB_HOST: db
       DJANGO_DB_NAME: app
@@ -40,12 +34,22 @@ ____
 ```
 
 
-* migrate database:
+* Run Docker containers:
 ```shell
-python3 manage.py migrate
+docker-compose up
+```
+* Open app:
+```
+    http://127.0.0.1:8000 
 ```
 
-* start application:
+*  Stop containers:
 ```shell
-python3 manage.py runserver 0.0.0.0:8000
+    docker-compose stop
 ```
+
+*  Delete containers:
+```shell
+    docker-compose down
+```
+

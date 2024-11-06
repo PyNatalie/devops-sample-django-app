@@ -11,14 +11,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
-#    healthcheck:
-#      test: [ "CMD-SHELL", "pg_isready", "-U", "admin" ]
     networks:
       - devops-sample-django-app_default
     volumes:
-      - type: bind
-        source: ./uploads
-        target: /devops-sample-django-app/uploads
+      - app-data:/devops-sample-django-app/media/uploads
 
   db:
     container_name: "django_db"
@@ -26,8 +22,6 @@ services:
     restart: always
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
-#      [ "CMD", "pg_isready", "-q", "-d", "worker", "-U", "postgres" ]
-#      test: [ "CMD-SHELL", "pg_isready", "-U", "worker", "-d", "app", "--quiet" ]
       interval: 1s
       timeout: 5s
       retries: 10
@@ -45,4 +39,5 @@ networks:
   devops-sample-django-app_default:
 volumes:
   db-data:
+  app-data:
 
