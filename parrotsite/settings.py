@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!+2xjvrcp4w@64+^l!j)1-64$^m$!(n+koqc6uz2gdb@w!!970'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ['DJANGO_DEBUG'] or "False"
+DEBUG = os.environ.get('DJANGO_DEBUG') or "False"
 
 ALLOWED_HOSTS = ["*"]
 
@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'parrotsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ['DJANGO_DB_HOST'],
-        'NAME': os.environ['DJANGO_DB_NAME'],
-        'USER': os.environ['DJANGO_DB_USER'],
-        'PASSWORD': os.environ['DJANGO_DB_PASS'],
-        'PORT': os.environ['DJANGO_DB_PORT']
+        'HOST': "db",
+        'NAME': os.environ.get('DJANGO_DB_NAME'),
+        'USER': os.environ.get('DJANGO_DB_USER'),
+        'PASSWORD': os.environ.get('DJANGO_DB_PASS'),
+        'PORT': os.environ.get('DJANGO_DB_PORT')
 
     }
 }
